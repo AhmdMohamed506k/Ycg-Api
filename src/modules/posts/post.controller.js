@@ -31,7 +31,7 @@ export const addpost = async (req, res, next) =>{
   const user= await userModel.findOne({ _id: req.user._id, status: "online" });
   
   if (!user) {
-  return res.status(400).json({ msg: "sorry you cant Add right now :(" });
+  return res.status(403).json({ msg: "sorry you cant Add right now :(" });
   }
 
 
@@ -53,13 +53,13 @@ export const updatePost = async (req, res, next) =>{
 
     const postOwner = await PostsModel.findOne({owner :req.user._id});
     if (!postOwner) {
-      return res.status(400).json("sorry user only can update this post")
+      return res.status(203).json("sorry user only can update this post")
     }
  
     
     const postid = await PostsModel.findById({_id :postOwner._id});
     if (!postid) {
-      return res.status(400).json("sorry user only can update this post")
+      return res.status(203).json("sorry user only can update this post")
     }
 
     const post = await PostsModel.findOneAndUpdate({ _id :postid}, {PostTitle, PostDescription, seniorityLevel, jobFeild, Skills} ,{new:true} )
@@ -73,13 +73,13 @@ export const deletPost = async (req, res, next) =>{
   
   const postOwner = await PostsModel.findOne({owner :req.user._id});
   if (!postOwner) {
-    return res.status(400).json("sorry user only can delete this post")
+    return res.status(203).json("sorry user only can delete this post")
   }
  
     
   const postid = await PostsModel.findById({_id :postOwner._id});
   if (!postid) {
-    return res.status(400).json("sorry user only can update this post")
+    return res.status(203).json("sorry user only can update this post")
   }
 
   const post = await PostsModel.deleteOne({ _id :postid},{new:true} )

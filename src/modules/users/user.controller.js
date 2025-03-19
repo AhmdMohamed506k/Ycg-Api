@@ -68,7 +68,7 @@ export const confirmEmail = async (req, res, next) => {
     }
     const user = await userModel.findOneAndUpdate({ Email: decoded.Email, recoveryEmail: "0" }, { recoveryEmail: "1" }, { new: true });
     if (!user) {
-     return   res.status(400).json({ msg: "already confirmed" });
+     return   res.status(403).json({ msg: "already confirmed" });
  
     }
     res.status(200).json({ msg: "done" });
@@ -83,7 +83,7 @@ export const signIn = async (req, res, next) =>{   //Login
         const user = await userModel.findOne({ Email });
     
         if (!user || ! bcrypt.compareSync(password , user.password)) {
-            res.status(400).json("Sorry wrong Email or Password");
+            res.status(350).json("Sorry wrong Email or Password");
         }
         const token = jwt.sign({ Email,firstName:user.firstName ,lastName:user.lastName ,userName:user.userName ,Email:user.Email, mobileNumber:user.mobileNumber }, "test")
        
@@ -116,11 +116,11 @@ export const updateAccount = async (req, res, next) =>{
         }
         const usernameExist= await userModel.findOne({userName:req.user.userName});
         if (usernameExist) { 
-            res.status(400).json({msg:"sorry userName already exist"});
+            res.status(350).json({msg:"sorry userName already exist"});
         }
         const phoneExist= await userModel.findOne({mobileNumber:req.user.mobileNumber});
         if (phoneExist) { 
-            res.status(400).json({msg:"sorry phone number already exist"});
+            res.status(350).json({msg:"sorry phone number already exist"});
         }
 
         const user = await userModel.findOneAndUpdate({_id:req.user._id} ,{ firstName, lastName, userName, mobileNumber }, { new: true });
@@ -150,7 +150,7 @@ export const updataPassword = async (req, res, next) =>{
         const userExist = await userModel.findOne({Email})
         if (!userExist) {
          
-          res.status(400).json({msg:"user not found"})
+          res.status(204).json({msg:"user not found"})
         
           
         }
