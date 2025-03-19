@@ -5,13 +5,13 @@ import userRouter from "./src/modules/users/user.routes.js"
 
 import PostRouter from "./src/modules/posts/post.routes.js"
 
-app.use(cors());
+
 
 const app = express()
 const port = process.env.port || 3000
 
 
-
+app.use(cors({origin: '*'}));
 
 
 app.use(express.json());
