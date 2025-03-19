@@ -27,12 +27,12 @@ export const signUp = async (req, res, next) =>{
     
     const userExist = await userModel.findOne({ Email });
     if (userExist) {
-        return res.status(400).json("Email already Exist");
+         res.status(400).json("Email already Exist");
     }
 
     const userNameExist = await userModel.findOne({ userName });
     if (userNameExist) {
-        return res.status(400).json("Sorry userName already Exist");
+         res.status(400).json("Sorry userName already Exist");
     }
     const numberExist = await userModel.findOne({ mobileNumber });
     if (numberExist) {
