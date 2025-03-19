@@ -27,16 +27,16 @@ export const signUp = async (req, res, next) =>{
     
     const userExist = await userModel.findOne({ Email });
     if (userExist) {
-        return res.status(400).json({msg:"Email already Exist"});
+        return res.status(350).json({msg:"Email already Exist"});
     }
 
     const userNameExist = await userModel.findOne({ userName });
     if (userNameExist) {
-       return  res.status(400).json({msg:"Sorry userName already Exist"});
+       return  res.status(350).json({msg:"Sorry userName already Exist"});
     }
     const numberExist = await userModel.findOne({ mobileNumber });
     if (numberExist) {
-        return res.status(400).json({msg:"Sorry phone number already Exist"});
+        return res.status(350).json({msg:"Sorry phone number already Exist"});
     }
 
     const hash = bcrypt.hashSync(password, 8);
