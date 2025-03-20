@@ -85,7 +85,7 @@ export const signIn = async (req, res, next) =>{   //Login
         if (!user || ! bcrypt.compareSync(password , user.password)) {
             res.status(350).json("Sorry wrong Email or Password");
         }
-        const token = jwt.sign({ userName:user.userName ,Email,firstName:user.firstName, lastName :user.lastName, mobileNumber:user.mobileNumber }, "test")
+        const token = jwt.sign({ Email }, "test")
        
   
         await userModel.findOneAndUpdate({ status :"offline"},{status:"online"}, {new:true})
