@@ -36,7 +36,7 @@ export const addpost = async (req, res, next) =>{
 
 
   const post = await PostsModel.create({PostTitle, PostDescription, seniorityLevel, jobFeild, Skills,owner: req.user._id});
-  res.status(200).json({msg:"done",post})
+  res.status(200).json({msg:"done",post,PostOwnerinfo:user})
 
   
 
