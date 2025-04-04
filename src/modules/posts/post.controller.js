@@ -12,8 +12,8 @@ export const getPosts = async (req, res, next) =>{
       const posts = await PostsModel.find()
     
       
-      const UserOwner= await userModel.findOne({_id:posts.owner})
-      res.status(200).json(posts ,UserOwner)
+
+      res.status(200).json(posts )
   }
   catch (err) {
      console.log("catch Error",err);
