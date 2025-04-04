@@ -12,8 +12,7 @@ export const getPosts = async (req, res, next) =>{
       const posts = await PostsModel.find()
     
       
-
-      res.status(200).json(posts )
+      res.status(200).json(posts);
   }
   catch (err) {
      console.log("catch Error",err);
