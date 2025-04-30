@@ -7,6 +7,7 @@ const router = Router();
 
 
 router.get("/getAllUsers",us.getAllUsers);
+router.get("/getUserProfile", auth ,us.getUserProfile);
 
 //================================================
 

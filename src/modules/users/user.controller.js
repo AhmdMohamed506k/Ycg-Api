@@ -2,6 +2,7 @@ import userModel from "../../../DB/models/user.model.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import { sendEmail } from "../../service/sendMail.js";
+import PostsModel from './../../../DB/models/post.model.js';
 
 
    
@@ -20,6 +21,26 @@ export const getAllUsers = async (req, res, next) =>{
    }
 
 }
+export const getUserProfile = async (req, res, next) =>{
+    try {
+      const userposts= await PostsModel.findOne({owner:req.user._id})
+      
+      if(!userposts){
+        res.status(400).json({msg:"invalid id"})
+      }
+      const userdata =await userModel.findById(req.user._id);
+      if(!userdata){
+        res.status(400).json({msg:"invalid user id"})
+      }
+      res.status(200).json({msg:"done",userdata,userposts})
+      
+    
+    }
+    catch (err) {
+       console.log("catch Error",err);
+   }
+
+}
 export const signUp = async (req, res, next) =>{
     
 
@@ -27,19 +48,19 @@ export const signUp = async (req, res, next) =>{
     
     const userExist = await userModel.findOne({ Email });
     if (userExist) {
-        return res.status(350).json({msg:"Email already Exist"});
+        return res.status(400).json("Email already Exist");
     }
 
     const userNameExist = await userModel.findOne({ userName });
     if (userNameExist) {
-       return  res.status(350).json({msg:"Sorry userName already Exist"});
+        return res.status(400).json("Sorry userName already Exist");
     }
     const numberExist = await userModel.findOne({ mobileNumber });
     if (numberExist) {
-        return res.status(350).json({msg:"Sorry phone number already Exist"});
+        return res.status(400).json("Sorry phone number already Exist");
     }
 
-    const hash = bcrypt.hashSync(password, 8);
+    const hash2 = bcrypt.hashSync(password, 8);
 
 
 
@@ -48,7 +69,7 @@ export const signUp = async (req, res, next) =>{
     await sendEmail(Email, Link,`<a href=${Link}>click here</a>`)
     
    
-    const user = await userModel.create({ firstName, lastName, userName, Email, password: hash , mobileNumber });
+    const user = await userModel.create({ firstName, lastName, userName, Email, password: hash2 , mobileNumber });
     
 
     res.status(200).json({msg:"done",user})
@@ -68,7 +89,7 @@ export const confirmEmail = async (req, res, next) => {
     }
     const user = await userModel.findOneAndUpdate({ Email: decoded.Email, recoveryEmail: "0" }, { recoveryEmail: "1" }, { new: true });
     if (!user) {
-     return   res.status(403).json({ msg: "already confirmed" });
+     return   res.status(400).json({ msg: "already confirmed" });
  
     }
     res.status(200).json({ msg: "done" });
@@ -83,13 +104,13 @@ export const signIn = async (req, res, next) =>{   //Login
         const user = await userModel.findOne({ Email });
     
         if (!user || ! bcrypt.compareSync(password , user.password)) {
-            res.status(350).json("Sorry wrong Email or Password");
+            res.status(400).json("Sorry wrong Email or Password");
         }
-        const token = jwt.sign({ Email ,userName:user.userName,firstName:user.firstName,lastName:user.lastName,mobileNumber:user.mobileNumber }, "test")
        
+        var token = jwt.sign({ Email:Email ,userName:user.userName }, "*");
   
         await userModel.findOneAndUpdate({ status :"offline"},{status:"online"}, {new:true})
-        res.status(201).json({msg:"done",token})
+        res.status(200).json({msg:"done",token})
       
       
     }
@@ -116,11 +137,11 @@ export const updateAccount = async (req, res, next) =>{
         }
         const usernameExist= await userModel.findOne({userName:req.user.userName});
         if (usernameExist) { 
-            res.status(350).json({msg:"sorry userName already exist"});
+            res.status(400).json({msg:"sorry userName already exist"});
         }
         const phoneExist= await userModel.findOne({mobileNumber:req.user.mobileNumber});
         if (phoneExist) { 
-            res.status(350).json({msg:"sorry phone number already exist"});
+            res.status(400).json({msg:"sorry phone number already exist"});
         }
 
         const user = await userModel.findOneAndUpdate({_id:req.user._id} ,{ firstName, lastName, userName, mobileNumber }, { new: true });
@@ -150,7 +171,7 @@ export const updataPassword = async (req, res, next) =>{
         const userExist = await userModel.findOne({Email})
         if (!userExist) {
          
-          res.status(204).json({msg:"user not found"})
+          res.status(400).json({msg:"user not found"})
         
           
         }

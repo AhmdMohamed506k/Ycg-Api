@@ -1,3 +1,4 @@
+
 import mongoose, { Schema ,model} from "mongoose";
 
 const PostsSchema = new Schema({
@@ -21,6 +22,21 @@ const PostsSchema = new Schema({
         type: String,
         enum: ["Accounting, Finance & Banking","Engineering", "Designers","Customer Service & Call Center","Drivers & Delivery","Education","Tourism, Travel & Hospitality","IT - Telecom","Medical, Healthcare, & Nursing"],
         required:true
+    },
+    Jobaddress : {                              
+        type: String,
+        required:true
+
+    },
+    ownerMobile : {                              
+        type: String,
+        required:true
+
+    },
+    ownerName : {                              
+        type: String,
+        required:true
+
     },
     Skills : {                              
         type: Array,
