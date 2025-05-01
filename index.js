@@ -6,8 +6,8 @@ import PostRouter from "./src/modules/posts/post.routes.js"
 
 
 const app = express()
-app.use(cors());
 
+app.use(cors({origin: '*'}));
 
 
 const port = process.env.port || 3000
