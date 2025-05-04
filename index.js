@@ -14,10 +14,10 @@ const port = process.env.port || 3000
 
 
 app.use((req,res,next)=>{
-    res.header({"Access-Control-Allow-Origin":"*"})
-    res.header({'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'})
-    res.header({'Access-Control-Allow-Methods': "GET,POST,PUT,DELETE,OPTIONS"})
-    res.header({'Access-Control-Allow-Credentails': true})
+    res.header("Access-Control-Allow-Origin","*")
+    res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token')
+    res.header('Access-Control-Allow-Methods',"GET,POST,PUT,DELETE,OPTIONS")
+    res.header('Access-Control-Allow-Credentails', true)
      next()
 
 
