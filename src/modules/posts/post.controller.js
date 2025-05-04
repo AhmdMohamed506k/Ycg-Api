@@ -91,7 +91,12 @@ export const addpost = async (req, res, next) =>{
 
 
   const post = await PostsModel.create({PostTitle, PostDescription, seniorityLevel, jobFeild, Skills,owner: req.user._id ,Jobaddress ,ownerMobile:req.user.mobileNumber ,ownerName:req.user.firstName});
-  res.status(200).json({msg:"done",post,PostOwnerinfo:user})
+   
+  if(post){
+    return   res.status(200).json({msg:"done",post,PostOwnerinfo:user})
+
+  }
+  res.status(406).json({msg:"sorry you can not add post now"})
 
   
 
