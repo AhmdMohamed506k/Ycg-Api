@@ -12,7 +12,10 @@ const app = express()
 
 app.use(cors( ));
 
-
+app.use( function(req,res,next){
+    req.header({"Access-Control-Allow-Origin":"*"})
+ 
+});
 
 const port = process.env.port || 3000
 
