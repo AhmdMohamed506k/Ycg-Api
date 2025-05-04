@@ -16,7 +16,7 @@ app.use("/", PostRouter);
 
 
 app.use((req, res, next) => {
-    const allowedOrigins = ["*"];
+    const allowedOrigins = ["http://localhost:5173"];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
