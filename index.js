@@ -9,7 +9,7 @@ const app = express()
 
 
 
-app.use(cors("Access-Control-Allow-Origin : *"));
+app.use(cors({"Access-Control-Allow-Origin":"*"}));
 app.use(cors( {origin:"*"} ));
 
 const port = process.env.port || 3000
