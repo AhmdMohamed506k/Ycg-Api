@@ -7,15 +7,7 @@ import PostRouter from "./src/modules/posts/post.routes.js"
 
 const app = express()
 
-app.use((req,res,next)=>{
-    req.header({"Access-Control-Allow-Origin":"*"})
-
-})
-
-app.use(cors(
-    req.header({"Access-Control-Allow-Origin":"*"})
-    
- ));
+app.use(cors( {origin : "*"} ));
 
 
 
