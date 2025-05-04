@@ -33,7 +33,8 @@ export const GetPostsByJobFeild = async (req,res,next)=>{
       
       return res.status(200).json({msg:"done",posts})
      }else{
-      res.status(204).json({msg:"Sorry there is no posts in this job feild",posts : 0})
+      res.status(400).json({msg:"Sorry there is no posts in this job feild",posts : 0})
+
      }
 
     
@@ -57,7 +58,7 @@ export const GetPostsById = async (req,res,next)=>{
       
       return res.status(200).json({msg:"done",post})
      }else{
-      res.status(204).json("invalid Id")
+      res.status(400).json("invalid Id")
 
      }
 
@@ -91,12 +92,7 @@ export const addpost = async (req, res, next) =>{
 
 
   const post = await PostsModel.create({PostTitle, PostDescription, seniorityLevel, jobFeild, Skills,owner: req.user._id ,Jobaddress ,ownerMobile:req.user.mobileNumber ,ownerName:req.user.firstName});
-   
-  if(post){
-    return   res.status(200).json({msg:"done",post,PostOwnerinfo:user})
-
-  }
-  res.status(406).json({msg:"sorry you can not add post now"})
+  res.status(200).json({msg:"done",post,PostOwnerinfo:user})
 
   
 
