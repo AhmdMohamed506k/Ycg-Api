@@ -78,7 +78,6 @@ export const GetPostsById = async (req,res,next)=>{
 
 export const addpost = async (req, res, next) =>{
     
-  req.header({"Access-Control-Allow-Origin":"*"})
     
 
   const  {PostTitle, PostDescription, seniorityLevel, jobFeild, Skills ,Jobaddress} = req.body;
