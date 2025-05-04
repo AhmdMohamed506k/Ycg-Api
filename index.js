@@ -15,9 +15,7 @@ app.use("/", userRouter);
 app.use("/", PostRouter); 
 
 
-app.use(cors(
-    {origin:"http://localhost:5173"}
-));
+app.use(cors());
 
 
 
@@ -25,6 +23,5 @@ app.use(cors(
 
 
 
-connectionDB()
 app.use('/', (req, res) => res.send('Hello World hi!'))
 app.listen(port, () => console.log(`successfully connected`))
