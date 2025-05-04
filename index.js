@@ -10,7 +10,7 @@ const app = express()
 
 
 
-app.use(cors( {origin:"*"} ));
+app.use(cors( ));
 
 app.use( function(req,res,next){
     req.header({"Access-Control-Allow-Origin":"*"})
