@@ -10,7 +10,6 @@ const app = express()
 app.use(cors( {origin : "*"} ));
 
 
-
 const port = process.env.port || 3000
 
 
@@ -26,6 +25,14 @@ app.use("/", PostRouter);
 
 app.use((req,res,next)=>{
     req.header({"Access-Control-Allow-Origin":"*"})
+    req.header({'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'})
+    req.header({'Access-Control-Allow-Methods': "GET,POST,PUT,DELETE,OPTIONS"})
+    req.header({'Access-Control-Allow-Credentails': true})
+
+
+
+
+
 
 })
 
