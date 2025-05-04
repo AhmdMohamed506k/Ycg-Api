@@ -24,7 +24,10 @@ app.use("/", userRouter);
 app.use("/", PostRouter); 
 
 
+app.use((req,res,next)=>{
+    req.header({"Access-Control-Allow-Origin":"*"})
 
+})
 
 
 connectionDB()
