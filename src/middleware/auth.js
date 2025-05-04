@@ -20,10 +20,11 @@ export const auth = async (req, res, next) => {
     if (!user ) {
       return res.status(400).json({ msg: "you are not authorised" });
     }
-    res.header("Access-Control-Allow-Origin","*")
-    res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token')
-    res.header('Access-Control-Allow-Methods',"GET,POST,PUT,DELETE,OPTIONS")
-    res.header('Access-Control-Allow-Credentails', true)
+    res.header({"Access-Control-Allow-Origin":"*"})
+    res.header({'Access-Control-Allow-Headers':'Origin, Content-Type, X-Auth-Token'})
+ 
+    res.header({"Access-Control-Allow-Methods":"GET,POST,PUT,DELETE,OPTIONS"})
+    res.header({'Access-Control-Allow-Credentails': true})
     
     req.user = user
     next()
