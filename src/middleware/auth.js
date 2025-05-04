@@ -20,7 +20,7 @@ export const auth = async (req, res, next) => {
     if (!user ) {
       return res.status(400).json({ msg: "you are not authorised" });
     }
-    res.header({"Access-Control-Allow-Origin":"*"})
+   
    
 
     
