@@ -17,7 +17,7 @@ app.use("/", PostRouter);
 
 
 
-var whitelist = ['*']
+var whitelist = ["http://localhost:5173"]
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
