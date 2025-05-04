@@ -5,6 +5,7 @@ import userRouter from "./src/modules/users/user.routes.js"
 import PostRouter from "./src/modules/posts/post.routes.js"
 const app = express();
 const port = process.env.port || 3000
+connectionDB()
 
 
 
