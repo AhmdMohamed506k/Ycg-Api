@@ -33,7 +33,7 @@ export const GetPostsByJobFeild = async (req,res,next)=>{
       
       return res.status(200).json({msg:"done",posts})
      }else{
-      res.status(404).json({msg:"Sorry there is no posts in this job feild",posts : 0})
+      res.status(204).json({msg:"Sorry there is no posts in this job feild",posts : 0})
      }
 
     
@@ -57,7 +57,7 @@ export const GetPostsById = async (req,res,next)=>{
       
       return res.status(200).json({msg:"done",post})
      }else{
-      res.status(400).json("invalid Id")
+      res.status(204).json("invalid Id")
 
      }
 
