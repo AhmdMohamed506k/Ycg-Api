@@ -7,20 +7,23 @@ const app = express();
 const port = process.env.port || 3000
 
 
+app.use(cors(corsOptions));
+
 
 app.use(express.json());
-
-
-var corsOptions = {
-    origin: 'http://localhost:5173',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
-
-
-app.use(cors(corsOptions));
 app.use("/", userRouter); 
 app.use("/", PostRouter); 
 
+var whitelist = ["http://localhost:5173",'http://127.0.0.1:5500',"127.0.0.1:27017"]
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
 
 
 
