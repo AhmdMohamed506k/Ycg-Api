@@ -4,11 +4,16 @@ import cors from 'cors';
 import userRouter from "./src/modules/users/user.routes.js"
 import PostRouter from "./src/modules/posts/post.routes.js"
 const app = express()
-const port = process.env.port || 3000
+
+
+app.use(cors(
+    {origin:"http://localhost:5173"}
+));
 
 
 
-app.use(cors({origin:"http://localhost:5173"}));
+
+
 
 
 
@@ -27,3 +32,4 @@ app.use("/", PostRouter);
 connectionDB()
 app.use('/', (req, res) => res.send('Hello World hi!'))
 app.listen(port, () => console.log(`successfully connected`))
+const port = process.env.port || 3000
