@@ -9,20 +9,6 @@ const app = express()
 
 app.use(cors("*"));
 
-app.use((req,res,next)=>{
-    res.header("Access-Control-Allow-Origin","*")
-    res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token')
-    res.header('Access-Control-Allow-Methods',"GET,POST,PUT,DELETE,OPTIONS")
-    res.header('Access-Control-Allow-Credentails', true)
-     next()
-
-
-
-
-
-})
-
-const port = process.env.port || 3000
 
 
 
