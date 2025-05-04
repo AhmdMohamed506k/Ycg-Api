@@ -14,9 +14,7 @@ app.use(cors( ));
 
 app.use( function(req,res,next){
     req.header({"Access-Control-Allow-Origin":"*"})
-    req.header({'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'})
-    req.header({'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'})
-    req.header({'Access-Control-Allow-Credentails': true})
+ 
 });
 
 const port = process.env.port || 3000
