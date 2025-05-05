@@ -12,6 +12,13 @@ app.use(cors())
 
 app.use(express.json());
 
+
+
+
+
+app.use("/", userRouter); 
+app.use("/", PostRouter); 
+
 app.use(function (req, res, next)  {
  
   req.header({'Access-Control-Allow-Origin': "*"});
@@ -20,13 +27,6 @@ app.use(function (req, res, next)  {
   req.header('Access-Control-Allow-Credentials', true);
   next();
 });
-
-
-
-app.use("/", userRouter); 
-app.use("/", PostRouter); 
-
-
 
 
 
