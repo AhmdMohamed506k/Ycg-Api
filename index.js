@@ -9,7 +9,7 @@ const port = process.env.port || 3000
 
 app.use(express.json());
 
-app.use(cors(corsOptions))
+app.use(cors(whitelist))
 
 var whitelist = ['http://localhost:5173','http://localhost:5173/']
 var corsOptions = {
