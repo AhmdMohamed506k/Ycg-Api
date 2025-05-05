@@ -46,7 +46,7 @@ const PostsSchema = new Schema({
     },
     PostOwnerId:{
         type: String,
-        required:true
+       
     },
     owner:{
         type: Schema.Types.ObjectId,
