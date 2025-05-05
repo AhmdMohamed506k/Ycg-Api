@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.use(cors(corsOptions))
 
-var whitelist = ['http://localhost:5173','http://localhost:5173/']
+var whitelist = ['http://localhost:5173','https://ycg-ecru.vercel.app']
 app.use((req,res,next)=>{
   var corsOptions = {
     origin: function (origin, callback) {
