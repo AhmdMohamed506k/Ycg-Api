@@ -31,12 +31,12 @@ const PostsSchema = new Schema({
     },
     ownerMobile : {                              
         type: String,
-        required:true
+    
 
     },
     ownerName : {                              
         type: String,
-        required:true
+    
 
     },
     Skills : {                              
