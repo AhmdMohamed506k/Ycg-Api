@@ -5,9 +5,14 @@ import userRouter from "./src/modules/users/user.routes.js"
 import PostRouter from "./src/modules/posts/post.routes.js"
 const app = express();
 const port = process.env.port || 3000
-app.use(function (req, res, next)  {
- 
-  req.header({'Access-Control-Allow-Origin': "*"});
+app.use(express.json());
+
+
+
+
+app.use( function (req, res, next)  {
+  cors()
+  req.header('Access-Control-Allow-Origin', "*");
   req.header('Access-Control-Allow-Methods', 'GET, POST,  PUT, PATCH, DELETE');
   req.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   req.header('Access-Control-Allow-Credentials', true);
@@ -16,8 +21,8 @@ app.use(function (req, res, next)  {
 
 
 
-app.use(cors())
-app.use(express.json());
+
+
 
 
 
