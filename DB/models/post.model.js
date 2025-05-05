@@ -1,4 +1,5 @@
 
+import { types } from "joi";
 import mongoose, { Schema ,model} from "mongoose";
 
 const PostsSchema = new Schema({
@@ -42,6 +43,10 @@ const PostsSchema = new Schema({
         type: Array,
         required:true
 
+    },
+    PostOwnerId:{
+        type: String,
+        required:true
     },
     owner:{
         type: Schema.Types.ObjectId,
