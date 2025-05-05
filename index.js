@@ -19,14 +19,6 @@ app.use(express.json());
 app.use("/", userRouter); 
 app.use("/", PostRouter); 
 
-app.use(function (req, res, next)  {
- 
-  req.header({'Access-Control-Allow-Origin': "*"});
-  req.header('Access-Control-Allow-Methods', 'GET, POST,  PUT, PATCH, DELETE');
-  req.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  req.header('Access-Control-Allow-Credentials', true);
-  next();
-});
 
 
 
