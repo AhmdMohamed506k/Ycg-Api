@@ -7,8 +7,13 @@ const app = express();
 const port = process.env.port || 3000
 
 
-app.use((req, res, next) => {
-  cors({origin :"*"})
+app.use(express.json());
+app.use(cors())
+
+
+
+app.use(function (req, res, next)  {
+ 
   req.header({'Access-Control-Allow-Origin': "*"});
   req.header('Access-Control-Allow-Methods', 'GET, POST,  PUT, PATCH, DELETE');
   req.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -17,7 +22,7 @@ app.use((req, res, next) => {
 });
 
 
-app.use(express.json());
+
 app.use("/", userRouter); 
 app.use("/", PostRouter); 
 
