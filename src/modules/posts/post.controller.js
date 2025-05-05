@@ -90,7 +90,7 @@ export const addpost = async (req, res, next) =>{
   }
 
 
-  const post = await PostsModel.create({PostTitle, PostDescription, seniorityLevel, jobFeild, Skills,PostOwnerId: req.user._id ,Jobaddress ,ownerMobile:req.user.mobileNumber ,ownerName:req.user.firstName});
+  const post = await PostsModel.create({PostTitle, PostDescription,Jobaddress, seniorityLevel, jobFeild, Skills, });
 
   res.status(200).json({msg:"done",post})
  
