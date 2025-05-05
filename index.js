@@ -10,11 +10,11 @@ const port = process.env.port || 3000
 app.use(express.json());
 
 
-app.use((req, res, next) => {
+app.use(function (req, res, next)  {
   const allowedOrigins = ['*'];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader({'Access-Control-Allow-Origin' : origin});
   }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
