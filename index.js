@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.use(cors(corsOptions))
 
-var whitelist = ['http://localhost:5173']
+var whitelist = ['http://localhost:3000/']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
