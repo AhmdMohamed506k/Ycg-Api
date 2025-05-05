@@ -40,7 +40,7 @@ const PostsSchema = new Schema({
 
     },
     Skills : {                              
-        type: Array,
+        type: String,
         required:true
 
     },
