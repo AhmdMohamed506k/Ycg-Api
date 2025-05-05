@@ -6,9 +6,10 @@ import PostRouter from "./src/modules/posts/post.routes.js"
 const app = express();
 const port = process.env.port || 3000
 
-app.use(cors(corsOptions))
+
 app.use(express.json());
 
+app.use(cors(corsOptions))
 
 var whitelist = ['http://localhost:5173']
 var corsOptions = {
