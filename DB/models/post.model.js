@@ -1,5 +1,4 @@
 
-import { types } from "joi";
 import mongoose, { Schema ,model} from "mongoose";
 
 const PostsSchema = new Schema({
@@ -21,7 +20,6 @@ const PostsSchema = new Schema({
     },
     jobFeild: {
         type: String,
-        enum: ["Accounting, Finance & Banking","Engineering", "Designers","Customer Service & Call Center","Drivers & Delivery","Education","Tourism, Travel & Hospitality","IT - Telecom","Medical, Healthcare, & Nursing"],
         required:true
     },
     Jobaddress : {                              
@@ -31,12 +29,12 @@ const PostsSchema = new Schema({
     },
     ownerMobile : {                              
         type: String,
-    
+      
 
     },
     ownerName : {                              
         type: String,
-    
+      
 
     },
     Skills : {                              
@@ -51,7 +49,7 @@ const PostsSchema = new Schema({
     owner:{
         type: Schema.Types.ObjectId,
         ref: "user",
-      
+       
   
        
     }

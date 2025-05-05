@@ -64,7 +64,7 @@ export const signUp = async (req, res, next) =>{
 
 
 
-    const token = jwt.sign({ Email }, "test")
+    const token = new jwt.sign({ Email }, "T")
     const Link = `http://localhost:3000/user/confirmEmail/${token}`;
     await sendEmail(Email, Link,`<a href=${Link}>click here</a>`)
     
@@ -107,7 +107,7 @@ export const signIn = async (req, res, next) =>{   //Login
             res.status(400).json("Sorry wrong Email or Password");
         }
        
-        var token = jwt.sign({ Email:Email ,userName:user.userName }, "*");
+        var token = jwt.sign({ Email:Email ,userName:user.userName }, "T");
   
         await userModel.findOneAndUpdate({ status :"offline"},{status:"online"}, {new:true})
         res.status(200).json({msg:"done",token})

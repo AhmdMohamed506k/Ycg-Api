@@ -10,7 +10,7 @@ export const getPosts = async (req, res, next) =>{
   try {
   
       const posts = await PostsModel.find()
-      console.log(posts);
+      
     
     
       res.status(200).json(posts)
@@ -78,9 +78,8 @@ export const GetPostsById = async (req,res,next)=>{
 
 export const addpost = async (req, res, next) =>{
     
+ 
     
-   
-     
   const  {PostTitle, PostDescription, seniorityLevel, jobFeild, Skills ,Jobaddress} = req.body;
  
 
@@ -91,14 +90,10 @@ export const addpost = async (req, res, next) =>{
   }
 
 
-  const post = await PostsModel.create({PostTitle, PostDescription,Jobaddress, seniorityLevel, jobFeild, Skills,ownerMobile:req.user.mobileNumber,ownerName:req.user.firstName , PostOwnerId:req.user._id });
+  const post = await PostsModel.create({PostTitle, PostDescription,Jobaddress, seniorityLevel, jobFeild, Skills,ownerMobile:req.user.mobileNumber,ownerName:req.user.firstName + req.user.lastName ,PostOwnerId:req.user._id });
 
   res.status(200).json({msg:"done",post})
  
- 
-  
-
-
 }
 export const updatePost = async (req, res, next) =>{
     
